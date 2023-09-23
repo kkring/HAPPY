@@ -1,13 +1,19 @@
 #container {
+    max-width: 1600px;
+    display: flex;
     height: 45rem;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
 }
 
 #teamIntroduction {
     /* 팀 소개 영역 */
-    height: 10%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: 565px;
+    margin: 20px;
 }
 
 .introductionItem {
@@ -21,24 +27,31 @@
 }
 
 #teamProfileContainer {
-    height: 90%;
+    height: auto;
+    display: flex;
+    width: 1200px;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: row;
 }
 
 .profile {
-    height: 100%;
-    width: 15%;
+    width: 225px;
 }
 
 .profileImage {
-    height: 48%;
+    width: 225px;
+    height: 225px;
+    background-color: aqua;
 }
 
 .profileName {
-    height: 8%;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    flex-direction: column;
 }
 
 .profileInformation {
@@ -59,7 +72,7 @@
 }
 
 .profileGuestBook {
-    height: 20%;
+    height: 200px;
 }
 
 .profileGuide {

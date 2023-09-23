@@ -11,14 +11,14 @@ async function injectHeader() {
     let headerHtml = await fetch("./header.html")
     let data = await headerHtml.text()
     document.querySelector("header").innerHTML = data;
-}
+};
 
 
 
 
 window.onload = async () => {
     // onload : html 파일을 모두 불러오고 나서 실행 (순서 보장)
-    injectHeader()
+    injectHeader();
 }
 
 
