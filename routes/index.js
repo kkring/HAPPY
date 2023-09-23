@@ -3,11 +3,30 @@ import Happy from '../schemas/schema.js'
 const router = express.Router();
 
 
+//** 방명록 작성 API*/
+import HappySave from '../schemas/schema.js';
+
+router.post('/save', async (req, res) => {
+  // 클라이언트에게 전달받은 방명록 데이터(user, password, contents, date)를 변수에 저장합니다.
+  const { user, password, contents, date } = req.body;
+
+  // Happy모델을 사용해, MongoDB에서 'id' 값이 가장 높은 '방명록'을 찾습니다.
+  const MaxSaveId = await Happy.findOne().sort('-Id').exec();
+
+  // 'id' 값이 가장 높은 방명록에 1을 추가하거나 없다면, 1을 할당합니다.
+  const Id = MaxSaveId ? MaxSaveId.Id + 1 : 1;
+
+  // Happy모델을 이용해, 새로운 '방명록'을 생성합니다.
+  const Happy = new Happy({ Id, user, password, contents, date, });
+
+  // 생성한 '해야할 일'을 MongoDB에 저장합니다.
+  await Happy.save();
+
+  return res.status(201).json({ Happy });
+});
 
 
-
-
-/** 해야할 일 조회 API*/
+/** 방명록 조회 API*/
 // api 등록시 router에 등록해야하므로 router. => 메서드는 조회기능이므로 get을 사용
 router.get('/rest', async(req, res) => {
     // 1. 해야할 일 목록 조회를 진행
@@ -19,9 +38,6 @@ router.get('/rest', async(req, res) => {
     // 2. 해야할 일 목록 조회 결과를 클라이언트에게 반환.
     return res.status(200).json({rest});
 });
-
-
-
 
 
 export default router;
