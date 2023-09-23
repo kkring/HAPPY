@@ -1,0 +1,70 @@
+#container {
+    height: 45rem;
+}
+
+#teamIntroduction {
+    /* 팀 소개 영역 */
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.introductionItem {
+    /* 팀 소개 아이템 여백 할당 */
+    margin-left: 1%;
+}
+
+.introductionTitle {
+    /* 팀 소개 아이템 타이틀*/
+    font-weight: bold;
+}
+
+#teamProfileContainer {
+    height: 90%;
+}
+
+.profile {
+    height: 100%;
+    width: 15%;
+}
+
+.profileImage {
+    height: 48%;
+}
+
+.profileName {
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.profileInformation {
+    height: 8%;
+}
+
+.profileNav {
+    height: 8%;
+    display: flex;
+}
+
+.profileNavItems {
+    height: 100%;
+    width: 49%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileGuestBook {
+    height: 20%;
+}
+
+.profileGuide {
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

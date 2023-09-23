@@ -1,0 +1,28 @@
+header {
+    height: 20vh;
+}
+
+#navItem {
+    /* 헤더 네비게이션 아이템 */
+    display: flex;
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+}
+
+#navButton {
+    /* 헤더 네비게이션 버튼 */
+    margin-left: auto;
+}
+
+#titleContainer {
+    /* 헤더 타이틀 컨테이너 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3%;
+}
+
+#title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
