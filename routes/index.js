@@ -4,25 +4,24 @@ const router = express.Router();
 
 
 //** 방명록 작성 API*/
-import HappySave from '../schemas/schema.js';
 
 router.post('/save', async (req, res) => {
   // 클라이언트에게 전달받은 방명록 데이터(user, password, contents, date)를 변수에 저장합니다.
-  const { user, password, contents, date } = req.body;
+  const { user, password, contents, } = req.body;
 
   // Happy모델을 사용해, MongoDB에서 'id' 값이 가장 높은 '방명록'을 찾습니다.
   const MaxSaveId = await Happy.findOne().sort('-Id').exec();
 
-  // 'id' 값이 가장 높은 방명록에 1을 추가하거나 없다면, 1을 할당합니다.
+//   // 'id' 값이 가장 높은 방명록에 1을 추가하거나 없다면, 1을 할당합니다.
   const Id = MaxSaveId ? MaxSaveId.Id + 1 : 1;
 
   // Happy모델을 이용해, 새로운 '방명록'을 생성합니다.
-  const Happy = new Happy({ Id, user, password, contents, date, });
+  const Happy = new Happy({ user, password, contents, });
 
   // 생성한 '해야할 일'을 MongoDB에 저장합니다.
   await Happy.save();
 
-  return res.status(201).json({ Happy });
+  return res.status(201).json({ Happy: Happy });
 });
 
 
@@ -36,8 +35,43 @@ router.get('/rest', async(req, res) => {
     // .sort('필드명') => 필드명 앞에 - 붙이면 DESC(기본형 ACS) / 필드명 데이터를 기준으로 정렬
     const rest = await Happy.find({}).sort().exec();
     // 2. 해야할 일 목록 조회 결과를 클라이언트에게 반환.
-    return res.status(200).json({rest});
+    return res.status(200).json({ rest: rest});
 });
+
+
+
+//* 방명록 수정 API*//
+
+router.patch('/happy/:id', async (req, res) => {
+    // 변경할 '방명록'의 _id 값을 가져옵니다.
+    const PostId = req.params;
+    // 클라이언트가 비밀번호, 내용 데이터를 가져옵니다.
+    const { contents, password } = req.body;
+  
+    // 변경하려는 '방명록'을 가져옵니다. 만약, 해당 _id값을 가진 '방명록'이 없다면 에러를 발생시킵니다.
+    const currentPost = await Happy.findById(PostId).exec();
+    if (!currentPost) {
+      return res
+        .status(400)
+        .json({ errorMessage: '존재하지 않는 방명록 데이터입니다.' });
+    }
+
+    const PostPWD = currentPost.password
+
+if(password === PostPWD) {
+    if (contents) {
+      // 변경하려는 방명록의 내용을 변경합니다.
+      currentPost.contents = contents;
+    }
+}
+    else {
+        console.log('비밀번호가 다릅니다.')
+    }
+    // 변경된 방명록을 저장합니다.
+    await currentPost.save();
+  
+    return res.status(200).json({});
+  });
 
 
 export default router;
