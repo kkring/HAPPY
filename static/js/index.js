@@ -22,8 +22,8 @@ window.onload = async () => {
 }
 
 
-// front ,backend예시  코드
-//
+// // front ,backend예시  코드
+
 // export const FRONT_BASE_URL = "http://127.0.0.1:5500"
 // export const BACK_BASE_URL = "http://127.0.0.1:8000"
 // export async function handleLoginAPI() {

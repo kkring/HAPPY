@@ -1,10 +1,11 @@
 // schemas/schema.js
 
+import { timeStamp } from 'console';
 import mongoose from 'mongoose';
 
 const HappySchema = new mongoose.Schema({
-    
-    user: {
+
+  user: {
     type: String,
     required: true, // value 필드는 필수 요소입니다.
   },
@@ -20,6 +21,7 @@ const HappySchema = new mongoose.Schema({
     type: Date, // doneAt 필드는 Date 타입을 가집니다.
     required: false, // doneAt 필드는 필수 요소가 아닙니다.
   },
+
 });
 
 // // 프론트엔드 서빙을 위한 코드입니다. 모르셔도 괜찮아요!
